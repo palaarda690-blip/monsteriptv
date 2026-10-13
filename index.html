@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MonsterIPTV - Ücretsiz Canlı TV</title>
+    <title>MonsterIPTV - Ulusal Canlı TV</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
                 <span>MONSTER<b>IPTV</b></span>
             </a>
             <div class="nav-btn">
-                <span class="free-badge"><i class="fa-solid fa-signal"></i> ÜCRETSİZ CANLI YAYIN</span>
+                <span class="free-badge"><i class="fa-solid fa-signal"></i> KESİNTİSİZ YAYIN</span>
             </div>
         </div>
     </header>
@@ -39,32 +39,68 @@
                 <div class="video-container">
                     <div class="video-wrapper">
                         <video id="iptv-player" class="video-js vjs-big-play-centered" controls preload="auto" data-setup='{}'>
-                            <source src="https://taraftarium24fb.com/b1/mono.m3u8" type="application/x-mpegURL">
+                            <source src="https://live.medya.yedic.net/smil:showtv.smil/playlist.m3u8" type="application/x-mpegURL">
                         </video>
                     </div>
                     <div class="now-playing-bar">
                         <div class="live-tag"><i class="fa-solid fa-circle"></i> CANLI</div>
-                        <h2 id="current-channel-title">Taraftarium Maç Yayını</h2>
+                        <h2 id="current-channel-title">Show TV</h2>
                     </div>
                 </div>
 
                 <!-- Sağ: Kanal Seçim Listesi -->
                 <div class="channel-sidebar">
                     <div class="sidebar-header">
-                        <h3><i class="fa-solid fa-list"></i> Yayın Listesi</h3>
-                        <span class="count-tag">HD / 4K</span>
+                        <h3><i class="fa-solid fa-list"></i> Ulusal Kanallar</h3>
+                        <span class="count-tag">HD</span>
                     </div>
                     <div class="channel-list" id="channel-list">
-                        <!-- 1. Kanal: Yeni Eklenen Maç Yayını -->
-                        <button class="channel-btn active" data-url="https://taraftarium24fb.com/b1/mono.m3u8" data-title="Taraftarium Maç Yayını">
-                            <i class="fa-solid fa-futbol"></i>
-                            <span>Taraftarium Maç Yayını</span>
+                        <!-- Show TV -->
+                        <button class="channel-btn active" data-url="https://live.medya.yedic.net/smil:showtv.smil/playlist.m3u8" data-title="Show TV">
+                            <i class="fa-solid fa-tv"></i>
+                            <span>Show TV</span>
                         </button>
 
-                        <!-- 2. Kanal: Örnek Test Yayını -->
-                        <button class="channel-btn" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" data-title="Örnek Canlı Yayın 1">
+                        <!-- Now TV -->
+                        <button class="channel-btn" data-url="https://live.foxplay.com.tr/live/fox-tv.m3u8" data-title="Now TV">
+                            <i class="fa-solid fa-video"></i>
+                            <span>Now TV</span>
+                        </button>
+
+                        <!-- Kanal D -->
+                        <button class="channel-btn" data-url="https://demiroren-live.daioncdn.net/kanald/kanald.m3u8" data-title="Kanal D">
+                            <i class="fa-solid fa-film"></i>
+                            <span>Kanal D</span>
+                        </button>
+
+                        <!-- TRT 1 -->
+                        <button class="channel-btn" data-url="https://tv-trt1.live.trt.com.tr/master.m3u8" data-title="TRT 1">
                             <i class="fa-solid fa-tv"></i>
-                            <span>Örnek Canlı Yayın 1</span>
+                            <span>TRT 1</span>
+                        </button>
+
+                        <!-- TRT Haber -->
+                        <button class="channel-btn" data-url="https://tv-trthaber.live.trt.com.tr/master.m3u8" data-title="TRT Haber">
+                            <i class="fa-solid fa-newspaper"></i>
+                            <span>TRT Haber</span>
+                        </button>
+
+                        <!-- TRT Spor -->
+                        <button class="channel-btn" data-url="https://tv-trtspor.live.trt.com.tr/master.m3u8" data-title="TRT Spor">
+                            <i class="fa-solid fa-futbol"></i>
+                            <span>TRT Spor</span>
+                        </button>
+
+                        <!-- TRT Belgesel -->
+                        <button class="channel-btn" data-url="https://tv-trtbelgesel.live.trt.com.tr/master.m3u8" data-title="TRT Belgesel">
+                            <i class="fa-solid fa-earth-americas"></i>
+                            <span>TRT Belgesel</span>
+                        </button>
+
+                        <!-- TRT Çocuk -->
+                        <button class="channel-btn" data-url="https://tv-trtcocuk.live.trt.com.tr/master.m3u8" data-title="TRT Çocuk">
+                            <i class="fa-solid fa-child"></i>
+                            <span>TRT Çocuk</span>
                         </button>
                     </div>
                 </div>
