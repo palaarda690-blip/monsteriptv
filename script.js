@@ -1,50 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('iptv-player');
+    let player = null;
     const channelButtons = document.querySelectorAll('.channel-btn');
     const currentTitle = document.getElementById('current-channel-title');
 
-    let hls = new Hls();
-
-    function loadStream(url, title) {
-        if (Hls.isSupported()) {
-            hls.destroy(); // Önceki yayını sıfırla
-            hls = new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                video.play();
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            // Safari / iOS Tarafı İçin Yerel HLS Desteği
-            video.src = url;
-            video.addEventListener('loadedmetadata', () => {
-                video.play();
-            });
+    function initPlayer(url, title) {
+        // Eğer daha önce açılmış bir oynatıcı varsa tamamen yok et
+        if (player) {
+            player.destroy();
         }
-        
+
+        // Clappr Player'ı yeniden oluştur
+        player = new Clappr.Player({
+            source: url,
+            parentId: "#clappr-player",
+            width: "100%",
+            height: "100%",
+            autoPlay: true,
+            mute: false
+        });
+
         if (title) {
             currentTitle.textContent = title;
         }
     }
 
-    // İlk varsayılan kanalı yükle
+    // Sayfa açıldığında ilk kanalı otomatik başlat
     const firstBtn = channelButtons[0];
     if (firstBtn) {
-        const initialUrl = firstBtn.getAttribute('data-url');
-        const initialTitle = firstBtn.querySelector('span').textContent;
-        loadStream(initialUrl, initialTitle);
+        initPlayer(firstBtn.getAttribute('data-url'), firstBtn.getAttribute('data-title'));
     }
 
-    // Kanal Butonlarına Tıklama Mantığı
+    // Kanal butonlarına tıklandığında yayını değiştir
     channelButtons.forEach(button => {
         button.addEventListener('click', () => {
             channelButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
             const streamUrl = button.getAttribute('data-url');
-            const channelName = button.querySelector('span').textContent;
-            
-            loadStream(streamUrl, channelName);
+            const streamTitle = button.getAttribute('data-title');
+
+            initPlayer(streamUrl, streamTitle);
         });
     });
 });
