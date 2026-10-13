@@ -10,8 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <!-- FontAwesome Icon Set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Clappr Player Kütüphanesi -->
+    
+    <!-- Clappr Player ve HLS Playback Eklentisi -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/hlsjs-playback@latest/dist/clappr-hlsjs-playback.min.js"></script>
+
     <!-- CSS Dosyası -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -51,8 +54,8 @@
                         <span class="count-tag">HD / 4K</span>
                     </div>
                     <div class="channel-list" id="channel-list">
-                        <!-- 1. Kanal: PatronSpor (CORS Proxy ile Yönlendirildi) -->
-                        <button class="channel-btn active" data-url="https://corsproxy.io/?https%3A%2F%2F2i4.d72577a9dd0ec71.cfd%2Fpatron%2Fmono.m3u8" data-title="PatronSpor">
+                        <!-- 1. Kanal: PatronSpor -->
+                        <button class="channel-btn active" data-url="https://2i4.d72577a9dd0ec71.cfd/patron/mono.m3u8" data-title="PatronSpor">
                             <i class="fa-solid fa-futbol"></i>
                             <span>PatronSpor</span>
                         </button>
