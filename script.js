@@ -1,36 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const audioPlayer = document.getElementById('audio-player');
-    const playBtn = document.getElementById('play-btn');
-    const playIcon = document.getElementById('play-icon');
-    const volumeSlider = document.getElementById('volume-slider');
+    const video = document.getElementById('iptv-player');
+    const channelButtons = document.querySelectorAll('.channel-btn');
+    const currentTitle = document.getElementById('current-channel-title');
 
-    let isPlaying = false;
+    let hls = new Hls();
 
-    playBtn.addEventListener('click', () => {
-        if (isPlaying) {
-            pauseStream();
-        } else {
-            playStream();
+    function loadStream(url, title) {
+        if (Hls.isSupported()) {
+            hls.destroy(); // Önceki yayını sıfırla
+            hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Safari / iOS Tarafı İçin Yerel HLS Desteği
+            video.src = url;
+            video.addEventListener('loadedmetadata', () => {
+                video.play();
+            });
         }
-    });
-
-    function playStream() {
-        if (audioPlayer.src && !audioPlayer.src.includes('YOUR_STREAM_URL_HERE')) {
-            audioPlayer.play();
+        
+        if (title) {
+            currentTitle.textContent = title;
         }
-        isPlaying = true;
-        playIcon.classList.remove('fa-play');
-        playIcon.classList.add('fa-pause');
     }
 
-    function pauseStream() {
-        audioPlayer.pause();
-        isPlaying = false;
-        playIcon.classList.remove('fa-pause');
-        playIcon.classList.add('fa-play');
+    // İlk varsayılan kanalı yükle
+    const firstBtn = channelButtons[0];
+    if (firstBtn) {
+        const initialUrl = firstBtn.getAttribute('data-url');
+        const initialTitle = firstBtn.querySelector('span').textContent;
+        loadStream(initialUrl, initialTitle);
     }
 
-    volumeSlider.addEventListener('input', (e) => {
-        audioPlayer.volume = e.target.value;
+    // Kanal Butonlarına Tıklama Mantığı
+    channelButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            channelButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const streamUrl = button.getAttribute('data-url');
+            const channelName = button.querySelector('span').textContent;
+            
+            loadStream(streamUrl, channelName);
+        });
     });
 });
