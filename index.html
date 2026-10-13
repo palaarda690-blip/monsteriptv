@@ -11,10 +11,8 @@
     <!-- FontAwesome Icon Set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Video.js Kütüphanesi ve Tema CSS -->
+    <!-- Video.js Kütüphanesi -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-
-    <!-- CSS Dosyası -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -40,13 +38,13 @@
                 <!-- Sol: Video.js Ekranı -->
                 <div class="video-container">
                     <div class="video-wrapper">
-                        <video id="iptv-player" class="video-js vjs-big-play-centered vjs-theme-city" controls preload="auto" data-setup='{}'>
-                            <source src="https://2i4.d72577a9dd0ec71.cfd/patron/mono.m3u8" type="application/x-mpegURL">
+                        <video id="iptv-player" class="video-js vjs-big-play-centered" controls preload="auto" data-setup='{}'>
+                            <source src="https://taraftarium24fb.com/b1/mono.m3u8" type="application/x-mpegURL">
                         </video>
                     </div>
                     <div class="now-playing-bar">
                         <div class="live-tag"><i class="fa-solid fa-circle"></i> CANLI</div>
-                        <h2 id="current-channel-title">PatronSpor</h2>
+                        <h2 id="current-channel-title">Taraftarium Maç Yayını</h2>
                     </div>
                 </div>
 
@@ -57,10 +55,10 @@
                         <span class="count-tag">HD / 4K</span>
                     </div>
                     <div class="channel-list" id="channel-list">
-                        <!-- 1. Kanal: PatronSpor -->
-                        <button class="channel-btn active" data-url="https://2i4.d72577a9dd0ec71.cfd/patron/mono.m3u8" data-title="PatronSpor">
+                        <!-- 1. Kanal: Yeni Eklenen Maç Yayını -->
+                        <button class="channel-btn active" data-url="https://taraftarium24fb.com/b1/mono.m3u8" data-title="Taraftarium Maç Yayını">
                             <i class="fa-solid fa-futbol"></i>
-                            <span>PatronSpor</span>
+                            <span>Taraftarium Maç Yayını</span>
                         </button>
 
                         <!-- 2. Kanal: Örnek Test Yayını -->
@@ -84,7 +82,6 @@
 
     <!-- Video.js JS Kütüphanesi -->
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <!-- JS Dosyası -->
     <script src="script.js"></script>
 </body>
 </html>
