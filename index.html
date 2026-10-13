@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MonsterIPTV - Ücretsiz Canlı TV & IPTV İzle</title>
+    <title>MonsterIPTV - Ücretsiz Canlı TV</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <!-- FontAwesome Icon Set -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Hls.js Kütüphanesi (IPTV .m3u8 Akışlarını Tarayıcıda Oynatmak İçin) -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Clappr Player Kütüphanesi -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
     <!-- CSS Dosyası -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -24,86 +24,46 @@
                 <i class="fa-solid fa-dragon logo-icon"></i>
                 <span>MONSTER<b>IPTV</b></span>
             </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#player-section" class="active">Canlı İzle</a></li>
-                    <li><a href="#channel-list-section">Kanal Listesi</a></li>
-                    <li><a href="#features">Özellikler</a></li>
-                </ul>
-            </nav>
             <div class="nav-btn">
-                <span class="free-badge"><i class="fa-solid fa-gift"></i> %100 ÜCRETSİZ</span>
+                <span class="free-badge"><i class="fa-solid fa-signal"></i> ÜCRETSİZ CANLI YAYIN</span>
             </div>
         </div>
     </header>
 
     <!-- Ana Video Oynatıcı Bölümü -->
-    <section id="player-section" class="player-section">
+    <section class="player-section">
         <div class="container">
             <div class="main-player-wrapper">
                 
-                <!-- Sol / Üst: Video Ekranı -->
+                <!-- Sol: Clappr Video Ekranı -->
                 <div class="video-container">
-                    <video id="iptv-player" controls poster="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=80"></video>
+                    <div id="clappr-player"></div>
                     <div class="now-playing-bar">
                         <div class="live-tag"><i class="fa-solid fa-circle"></i> CANLI</div>
-                        <h2 id="current-channel-title">Kanal Seçiniz</h2>
+                        <h2 id="current-channel-title">Kanal Seçiliyor...</h2>
                     </div>
                 </div>
 
-                <!-- Sağ / Alt: Kanal Seçim Listesi -->
+                <!-- Sağ: Kanal Seçim Listesi (Kendi .m3u8 Linklerini Buraya Ekleyebilirsin) -->
                 <div class="channel-sidebar">
                     <div class="sidebar-header">
-                        <h3><i class="fa-solid fa-list"></i> Canlı Kanallar</h3>
-                        <span class="count-tag">Ücretsiz</span>
+                        <h3><i class="fa-solid fa-list"></i> Yayın Listesi</h3>
+                        <span class="count-tag">HD / 4K</span>
                     </div>
                     <div class="channel-list" id="channel-list">
-                        <!-- Kanallar JS ile veya Manuel Buraya Listelenir -->
-                        <button class="channel-btn active" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
+                        <!-- Örnek Kanal 1 -->
+                        <button class="channel-btn active" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" data-title="Örnek Canlı Yayın 1">
                             <i class="fa-solid fa-tv"></i>
-                            <span>Örnek Canlı Yayın 1 (Test Stream)</span>
+                            <span>Örnek Canlı Yayın 1</span>
                         </button>
-                        <button class="channel-btn" data-url="https://playertest.longtailvideo.com/adaptive/oceans/oceans.m3u8">
+                        <!-- Örnek Kanal 2 -->
+                        <button class="channel-btn" data-url="https://playertest.longtailvideo.com/adaptive/oceans/oceans.m3u8" data-title="Örnek Doğa & Sinema Yayını">
                             <i class="fa-solid fa-film"></i>
                             <span>Örnek Doğa & Sinema Yayını</span>
                         </button>
-                        <!-- Kendi .m3u8 Yayın Linklerini Buraya Buton Olarak Ekleyebilirsin -->
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- Bilgilendirme / Özellikler -->
-    <section id="features" class="broadcasts">
-        <div class="container">
-            <div class="section-title">
-                <h2>Kesintisiz & Doğrudan Web'den İzle</h2>
-                <p>Uygulama veya üyelik gerektirmeden tüm tarayıcılarda anında yayındasınız.</p>
-            </div>
-            <div class="grid-cards">
-                <div class="card">
-                    <div class="card-badge">Web Player</div>
-                    <div class="card-body">
-                        <h3>Program İndirmeden İzle</h3>
-                        <p>MonsterIPTV doğrudan web tarayıcınız üzerinden çalışır, ekstra IPTV player kurmanıza gerek kalmaz.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-badge">Mobil Uyumlu</div>
-                    <div class="card-body">
-                        <h3>Tüm Cihazlarda Hazır</h3>
-                        <p>Telefon, tablet, bilgisayar veya Smart TV tarayıcısından tek tıkla canlı yayınlara erişin.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-badge">Sınırsız</div>
-                    <div class="card-body">
-                        <h3>%100 Ücretsiz Yayın</h3>
-                        <p>Reklam veya abonellik ücreti olmadan tüm kanalları dilediğinizce izleyebilirsiniz.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -111,7 +71,7 @@
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
-            <p>&copy; 2026 MonsterIPTV. Ücretsiz Web Canlı TV Portalı.</p>
+            <p>&copy; 2026 MonsterIPTV. GitHub Pages ile barındırılmaktadır.</p>
         </div>
     </footer>
 
